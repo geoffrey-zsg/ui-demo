@@ -9,8 +9,10 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
@@ -29,7 +31,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { AlertTriangle, Bell, Check, CheckCircle2, ChevronRight, Component, Edit, FormInput, Info, LayoutDashboard, Layers, Loader2, Menu, MessageSquare, Moon, Palette, Search, Settings, Star, Sun, User, X } from "lucide-react";
 
-type ThemePalette = "base" | "enterprise" | "lagoon" | "mist";
+type ThemePalette = "base" | "enterprise" | "lagoon";
 
 const PALETTE_STORAGE_KEY = "ui-demo-theme-palette";
 
@@ -42,6 +44,12 @@ const menuItems = [
   { id: "nav", label: "导航", icon: Menu },
 ] as const;
 
+const topModules = [
+  { id: "workspace", label: "工作台" },
+  { id: "system", label: "组件中心" },
+  { id: "assets", label: "设计资产" },
+] as const;
+
 const paletteOptions: {
   id: ThemePalette;
   label: string;
@@ -51,7 +59,6 @@ const paletteOptions: {
   { id: "base", label: "经典中性", description: "延续当前默认配色，干净克制，适合作为标准基线。", chips: ["#171717", "#6b7280", "#d4d4d8", "#ffffff"] },
   { id: "enterprise", label: "企业蓝灰", description: "蓝灰主导的后台风格，专业稳重，信息层级清晰。", chips: ["#0f62fe", "#0043ce", "#edf5ff", "#c6c6c6"] },
   { id: "lagoon", label: "清湾青色", description: "青绿色轻量点缀，观感更轻盈，适合现代数据界面。", chips: ["#1f9bb6", "#70d6b2", "#dff7f4", "#1f3344"] },
-  { id: "mist", label: "云雾青灰", description: "青灰低饱和配色，冷静清爽，适合企业级知识与数据平台。", chips: ["#3A7E8C", "#6FA8B2", "#EAF4F5", "#234852"] },
 ];
 
 const showToast = (type: "success" | "error" | "warning" | "info") => {
@@ -85,10 +92,6 @@ function isThemePalette(value: string | null): value is ThemePalette {
 }
 
 function normalizeStoredPalette(value: string | null): ThemePalette | null {
-  if (value === "ember") {
-    return "mist";
-  }
-
   return isThemePalette(value) ? value : null;
 }
 
@@ -219,18 +222,137 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
         </TabsList>
         <TabsContent value="buttons" className="mt-4">
           <Card>
-            <CardHeader><CardTitle>按钮样式</CardTitle><CardDescription>点击按钮查看 Toast 反馈</CardDescription></CardHeader>
-            <CardContent className="flex flex-wrap gap-4">
-              <Button onClick={() => showToast("success")}>默认</Button>
-              <Button variant="secondary" onClick={() => showToast("info")}>次要</Button>
-              <Button variant="outline" onClick={() => showToast("warning")}>边框</Button>
-              <Button variant="destructive" onClick={() => showToast("error")}>危险</Button>
-              <Button variant="ghost">幽灵</Button>
-              <Button variant="link">链接</Button>
-              <Button disabled>禁用</Button>
-              <Button size="sm">小</Button>
-              <Button size="lg">大</Button>
-              <Button onClick={handleLoading} disabled={loading}>{loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />加载中</> : "加载"}</Button>
+            <CardHeader>
+              <CardTitle>按钮样式</CardTitle>
+              <CardDescription>按类型、尺寸、状态和图标组合展示按钮规范，便于统一选型。</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
+                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">按钮类型</h4>
+                      <p className="text-sm text-muted-foreground">主操作保持唯一，危险操作只用于不可逆行为。</p>
+                    </div>
+                    <Badge variant="outline" className="rounded-full">Variant</Badge>
+                  </div>
+                  <div className="mt-4 flex flex-1 content-start flex-wrap gap-3">
+                    <Button onClick={() => showToast("success")}>主按钮</Button>
+                    <Button variant="secondary" onClick={() => showToast("info")}>次按钮</Button>
+                    <Button variant="outline" onClick={() => showToast("warning")}>边框按钮</Button>
+                    <Button variant="destructive" onClick={() => showToast("error")}>危险按钮</Button>
+                    <Button variant="ghost">幽灵按钮</Button>
+                    <Button variant="link">文字按钮</Button>
+                  </div>
+                </div>
+
+                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">使用建议</h4>
+                    <p className="text-sm text-muted-foreground">同一区域只保留一个主按钮，危险按钮默认放在操作区右侧。</p>
+                  </div>
+                  <div className="mt-4 space-y-2.5 text-sm leading-6 text-muted-foreground">
+                    <p>Primary：提交、创建、确认等关键动作。</p>
+                    <p>Secondary / Outline：辅助操作与并列操作。</p>
+                    <p>Danger：删除、停用、覆盖等高风险动作。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid items-stretch gap-4 lg:grid-cols-2">
+                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">按钮尺寸</h4>
+                      <p className="text-sm text-muted-foreground">小型用于紧凑工具栏，默认用于正文区，大型用于重点引导。</p>
+                    </div>
+                    <Badge variant="outline" className="rounded-full">Size</Badge>
+                  </div>
+                  <div className="mt-4 flex flex-1 content-start flex-wrap items-center gap-3">
+                    <Button size="sm">小按钮</Button>
+                    <Button>默认按钮</Button>
+                    <Button size="lg">大按钮</Button>
+                    <Button size="icon-sm" variant="outline" aria-label="搜索">
+                      <Search className="h-4 w-4" />
+                    </Button>
+                    <Button size="icon" variant="outline" aria-label="设置">
+                      <Settings className="h-4 w-4" />
+                    </Button>
+                    <Button size="icon-lg" variant="outline" aria-label="通知">
+                      <Bell className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">图标组合</h4>
+                      <p className="text-sm text-muted-foreground">优先使用前置图标提升识别度，后置图标用于继续、跳转等动作。</p>
+                    </div>
+                    <Badge variant="outline" className="rounded-full">Icon</Badge>
+                  </div>
+                  <div className="mt-4 flex flex-1 content-start flex-wrap gap-3">
+                    <Button><Check className="mr-1 h-4 w-4" />保存更改</Button>
+                    <Button variant="outline"><Search className="mr-1 h-4 w-4" />搜索筛选</Button>
+                    <Button variant="secondary">查看详情<ChevronRight className="ml-1 h-4 w-4" /></Button>
+                    <Button variant="ghost"><Edit className="mr-1 h-4 w-4" />编辑</Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border bg-card/80 p-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">按钮状态</h4>
+                    <p className="text-sm text-muted-foreground">统一展示 hover、禁用、加载和高风险状态，减少团队自行脑补的空间。</p>
+                  </div>
+                  <Badge variant="outline" className="rounded-full">State</Badge>
+                </div>
+                <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+                  <div className="rounded-2xl border bg-background/70 p-4">
+                    <div className="space-y-1">
+                      <h5 className="text-sm font-semibold">真实交互状态</h5>
+                      <p className="text-sm text-muted-foreground">直接悬停下方按钮，验证 hover 是否符合预期。</p>
+                    </div>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <Button>默认状态</Button>
+                      <Button variant="outline">悬停查看</Button>
+                      <Button disabled>禁用状态</Button>
+                      <Button variant="secondary" disabled>不可编辑</Button>
+                      <Button onClick={handleLoading} disabled={loading}>
+                        {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />加载中</> : "加载状态"}
+                      </Button>
+                      <Button variant="destructive"><AlertTriangle className="mr-1 h-4 w-4" />删除项目</Button>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border bg-background/70 p-4">
+                    <div className="space-y-1">
+                      <h5 className="text-sm font-semibold">状态说明</h5>
+                      <p className="text-sm text-muted-foreground">Hover 不改变语义，只增强反馈。Danger 和 Disabled 必须保持清晰边界。</p>
+                    </div>
+                    <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                      <div className="flex items-start justify-between gap-4 rounded-xl border border-border/70 px-3 py-2">
+                        <span className="font-medium text-foreground">Default / Hover</span>
+                        <span className="text-right">主按钮加深，边框按钮出现浅底反馈</span>
+                      </div>
+                      <div className="flex items-start justify-between gap-4 rounded-xl border border-border/70 px-3 py-2">
+                        <span className="font-medium text-foreground">Disabled</span>
+                        <span className="text-right">降低对比度，不响应交互</span>
+                      </div>
+                      <div className="flex items-start justify-between gap-4 rounded-xl border border-border/70 px-3 py-2">
+                        <span className="font-medium text-foreground">Loading</span>
+                        <span className="text-right">保留按钮位置，用旋转图标反馈进行中</span>
+                      </div>
+                      <div className="flex items-start justify-between gap-4 rounded-xl border border-border/70 px-3 py-2">
+                        <span className="font-medium text-foreground">Danger</span>
+                        <span className="text-right">仅用于不可逆操作，并与普通按钮拉开层级</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -282,32 +404,185 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
   );
 }
 
-function Form({ formTab, setFormTab, switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSliderValue }: { formTab: string; setFormTab: (value: string) => void; switchOn: boolean; setSwitchOn: (value: boolean) => void; isDarkMode: boolean; setTheme: (theme: string) => void; sliderValue: number[]; setSliderValue: (value: number[]) => void }) {
+function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSliderValue }: { switchOn: boolean; setSwitchOn: (value: boolean) => void; isDarkMode: boolean; setTheme: (theme: string) => void; sliderValue: number[]; setSliderValue: (value: number[]) => void }) {
   return (
     <div className="space-y-6">
-      <Tabs value={formTab} onValueChange={setFormTab}>
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="inputs">输入框</TabsTrigger>
-          <TabsTrigger value="selects">选择器</TabsTrigger>
-          <TabsTrigger value="switches">开关</TabsTrigger>
-          <TabsTrigger value="sliders">滑块</TabsTrigger>
-        </TabsList>
-        <TabsContent value="inputs" className="mt-4 space-y-4">
-          <Card>
-            <CardHeader><CardTitle>文本输入</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid w-full max-w-sm items-center gap-1.5"><Label htmlFor="email">邮箱</Label><Input type="email" id="email" placeholder="Email" className="theme-input" /></div>
-              <div className="grid w-full max-w-sm items-center gap-1.5"><Label htmlFor="pwd">密码</Label><Input type="password" id="pwd" placeholder="Password" className="theme-input" /></div>
-              <div className="grid w-full gap-1.5"><Label htmlFor="msg">消息</Label><Textarea placeholder="输入内容..." id="msg" className="theme-input" /></div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="selects" className="mt-4">
-          <Card>
-            <CardHeader><CardTitle>下拉选择</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <Select onValueChange={(v) => toast.info(`选择了: ${v}`)}>
-                <SelectTrigger className="theme-input w-[280px]"><SelectValue placeholder="选择框架" /></SelectTrigger>
+      <Card className="theme-accent-panel overflow-hidden border-primary/12">
+        <CardHeader>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <CardTitle>表单规范</CardTitle>
+                <Badge variant="outline" className="rounded-full">Field States</Badge>
+              </div>
+              <CardDescription>将常见字段、选择器和交互状态集中展示，避免切换 tab 才能理解表单系统。</CardDescription>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-3 lg:w-[420px]">
+              {[
+                { label: "字段类型", value: "10+" },
+                { label: "状态样例", value: "4" },
+                { label: "使用场景", value: "配置 / 资料" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-primary/12 bg-background/70 px-4 py-3">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground/80">{item.label}</p>
+                  <p className="mt-1 text-sm font-semibold text-foreground">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)]">
+        <Card className="h-full">
+          <CardHeader>
+            <CardTitle>基础字段</CardTitle>
+            <CardDescription>按真实表单节奏组织字段，不再把每个输入拆成独立卡片。</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-4 rounded-3xl border border-border/70 bg-background/70 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">联系信息</h4>
+                  <p className="text-xs text-muted-foreground">覆盖文本、邮箱、手机号与官网地址等基础资料字段。</p>
+                </div>
+                <Badge variant="outline" className="rounded-full">Text Fields</Badge>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="contact-name">姓名</Label>
+                  <Input id="contact-name" defaultValue="赵明" className="theme-input" />
+                  <p className="text-xs text-muted-foreground">优先展示真实示例值，避免空表单造成理解成本。</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-email">邮箱</Label>
+                  <Input id="contact-email" type="email" defaultValue="zhao@company.com" className="theme-input" />
+                  <p className="text-xs text-muted-foreground">适合通知收件人、账户登录名等结构化信息。</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-phone">手机号</Label>
+                  <Input id="contact-phone" type="tel" placeholder="138 0000 0000" className="theme-input" />
+                  <p className="text-xs text-muted-foreground">占位符保留格式提示，便于后续对接输入掩码。</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="contact-site">官网地址</Label>
+                  <Input id="contact-site" type="url" placeholder="https://example.com" className="theme-input" />
+                  <p className="text-xs text-muted-foreground">带协议的示例更贴近真实业务配置场景。</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4 rounded-3xl border border-border/70 bg-background/70 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">项目设置</h4>
+                  <p className="text-xs text-muted-foreground">把数值、日期和长文本组合成更接近真实业务的一个表单段。</p>
+                </div>
+                <Badge variant="outline" className="rounded-full">Structured Fields</Badge>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="team-size">团队规模</Label>
+                  <Input id="team-size" type="number" min="1" defaultValue="24" className="theme-input" />
+                  <p className="text-xs text-muted-foreground">适合配额、人数和阈值等数值型配置。</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="launch-date">上线日期</Label>
+                  <Input id="launch-date" type="date" className="theme-input" />
+                  <p className="text-xs text-muted-foreground">日期选择更适合里程碑、生效时间和排期场景。</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-3">
+                  <Label htmlFor="bio">项目简介</Label>
+                  <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Textarea</span>
+                </div>
+                <Textarea id="bio" defaultValue="面向企业知识与数据平台的后台系统，强调权限、配置与内容协作。" className="theme-input min-h-32" />
+                <p className="text-xs text-muted-foreground">建议 80-200 字，聚焦业务目标和核心用户。</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="h-full">
+          <CardHeader>
+            <CardTitle>字段状态</CardTitle>
+            <CardDescription>集中展示可编辑、只读、禁用和校验报错状态。</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label htmlFor="readonly-code">系统编号</Label>
+                <Badge variant="outline" className="rounded-full text-[11px]">只读</Badge>
+              </div>
+              <Input id="readonly-code" readOnly defaultValue="RAG-PRD-2026-031" className="theme-input bg-muted/40" />
+              <p className="text-xs text-muted-foreground">只读字段保留信息密度，但不允许用户修改。</p>
+            </div>
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label htmlFor="disabled-owner">负责人</Label>
+                <Badge variant="outline" className="rounded-full text-[11px]">禁用</Badge>
+              </div>
+              <Input id="disabled-owner" disabled defaultValue="已同步企业通讯录" className="theme-input" />
+              <p className="text-xs text-muted-foreground">禁用态应降低对比度，但仍保持内容可读。</p>
+            </div>
+            <div className="space-y-3 rounded-2xl border border-destructive/20 bg-destructive/5 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label htmlFor="invalid-email">通知邮箱</Label>
+                <Badge variant="outline" className="rounded-full border-destructive/25 bg-destructive/10 text-[11px] text-destructive">报错</Badge>
+              </div>
+              <Input id="invalid-email" type="email" aria-invalid="true" defaultValue="ops@company" className="theme-input" />
+              <p className="text-xs text-destructive">请输入有效邮箱地址，示例：ops@company.com</p>
+            </div>
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label htmlFor="required-field">审批人</Label>
+                <Badge variant="outline" className="rounded-full text-[11px]">必填</Badge>
+              </div>
+              <Input id="required-field" placeholder="请选择审批责任人" className="theme-input" />
+              <p className="text-xs text-muted-foreground">该字段为必填，提交前必须指定审批责任人。</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-2">
+        <Card className="h-full">
+          <CardHeader>
+            <CardTitle>选择与偏好</CardTitle>
+            <CardDescription>包含单选、下拉、复选和开关，模拟真实配置表单。</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label>部署环境</Label>
+                <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Radio</span>
+              </div>
+              <RadioGroup defaultValue="staging" className="gap-3">
+                <label className="flex items-center gap-3 rounded-xl border border-border/70 px-3 py-2">
+                  <RadioGroupItem value="dev" />
+                  <span className="text-sm">开发环境</span>
+                </label>
+                <label className="flex items-center gap-3 rounded-xl border border-border/70 px-3 py-2">
+                  <RadioGroupItem value="staging" />
+                  <span className="text-sm">预发环境</span>
+                </label>
+                <label className="flex items-center gap-3 rounded-xl border border-border/70 px-3 py-2">
+                  <RadioGroupItem value="prod" />
+                  <span className="text-sm">生产环境</span>
+                </label>
+              </RadioGroup>
+            </div>
+
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label>技术栈</Label>
+                <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Select</span>
+              </div>
+              <Select onValueChange={(v) => toast.info(`选择了: ${v}`)} defaultValue="next">
+                <SelectTrigger className="theme-input w-full">
+                  <SelectValue placeholder="选择框架" />
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="next">Next.js</SelectItem>
                   <SelectItem value="react">React</SelectItem>
@@ -315,20 +590,52 @@ function Form({ formTab, setFormTab, switchOn, setSwitchOn, isDarkMode, setTheme
                   <SelectItem value="angular">Angular</SelectItem>
                 </SelectContent>
               </Select>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="switches" className="mt-4">
-          <Card>
-            <CardHeader><CardTitle>开关组件</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Switch id="airplane" checked={switchOn} onCheckedChange={setSwitchOn} />
-                <Label htmlFor="airplane">{switchOn ? "开启" : "关闭"}</Label>
+            </div>
+
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <Label>功能开关</Label>
+                <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Checkbox</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <label className="flex items-center gap-3 rounded-xl border border-border/70 px-3 py-2">
+                <Checkbox defaultChecked />
+                <span className="text-sm">启用操作日志</span>
+              </label>
+              <label className="flex items-center gap-3 rounded-xl border border-border/70 px-3 py-2">
+                <Checkbox />
+                <span className="text-sm">开启邮件通知</span>
+              </label>
+              <label className="flex items-center gap-3 rounded-xl border border-border/70 px-3 py-2">
+                <Checkbox disabled />
+                <span className="text-sm text-muted-foreground">归档模式下禁止修改权限</span>
+              </label>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="h-full">
+          <CardHeader>
+            <CardTitle>交互控件</CardTitle>
+            <CardDescription>展示开关、滑块以及表单提交区的组合方式。</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/75 px-4 py-3">
+              <div className="space-y-1">
+                <Label htmlFor="notify-switch">系统通知</Label>
+                <p className="text-xs text-muted-foreground">打开后将通过站内信推送异常告警。</p>
+              </div>
+              <Switch id="notify-switch" checked={switchOn} onCheckedChange={setSwitchOn} />
+            </div>
+
+            <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/75 px-4 py-3">
+              <div className="space-y-1">
+                <Label htmlFor="theme-switch">深色模式</Label>
+                <p className="text-xs text-muted-foreground">用于验证表单在深浅主题下的状态一致性。</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-muted-foreground">{isDarkMode ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}</span>
                 <Switch
-                  id="dark"
+                  id="theme-switch"
                   checked={isDarkMode}
                   onCheckedChange={(checked) => {
                     const nextTheme = checked ? "dark" : "light";
@@ -336,22 +643,28 @@ function Form({ formTab, setFormTab, switchOn, setSwitchOn, isDarkMode, setTheme
                     toast.info(checked ? "深色模式" : "浅色模式");
                   }}
                 />
-                <Label htmlFor="dark">{isDarkMode ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}</Label>
               </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="sliders" className="mt-4">
-          <Card>
-            <CardHeader><CardTitle>滑块</CardTitle></CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2"><div className="flex justify-between"><Label>音量</Label><span>{sliderValue[0]}%</span></div>
-                <Slider value={sliderValue} onValueChange={(value) => setSliderValue(Array.isArray(value) ? [...value] : [value])} max={100} step={1} />
+            </div>
+
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 px-4 py-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <Label>资源配额</Label>
+                  <p className="text-xs text-muted-foreground">滑块用于调整租户容量、告警阈值或带宽上限。</p>
+                </div>
+                <Badge variant="outline" className="rounded-full">{sliderValue[0]}%</Badge>
               </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+              <Slider value={sliderValue} onValueChange={(value) => setSliderValue(Array.isArray(value) ? [...value] : [value])} max={100} step={1} />
+            </div>
+
+            <div className="flex flex-wrap items-center justify-end gap-3 border-t border-border/70 pt-4">
+              <Button variant="outline">取消</Button>
+              <Button variant="secondary">保存草稿</Button>
+              <Button onClick={() => toast.success("表单已提交")}>提交配置</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
@@ -395,7 +708,7 @@ function Feedback({ feedbackTab, setFeedbackTab, dialogOpen, setDialogOpen, shee
             <CardHeader><CardTitle>抽屉</CardTitle></CardHeader>
             <CardContent>
               <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-                <SheetTrigger><Button>打开抽屉</Button></SheetTrigger>
+                <SheetTrigger render={<Button>打开抽屉</Button>} />
                 <SheetContent>
                   <SheetHeader><SheetTitle>设置</SheetTitle><SheetDescription>管理您的设置</SheetDescription></SheetHeader>
                   <div className="space-y-4 py-4">
@@ -423,8 +736,8 @@ function Feedback({ feedbackTab, setFeedbackTab, dialogOpen, setDialogOpen, shee
           <Card>
             <CardHeader><CardTitle>气泡卡片</CardTitle></CardHeader>
             <CardContent className="flex flex-wrap gap-4">
-              <Popover><PopoverTrigger><Button variant="outline">打开气泡</Button></PopoverTrigger><PopoverContent className="w-80"><div className="grid gap-4"><div className="space-y-2"><h4 className="font-medium leading-none">尺寸</h4><p className="text-sm text-muted-foreground">选择产品尺寸</p></div><div className="grid gap-2"><div className="grid grid-cols-3 items-center gap-4"><Label htmlFor="width">宽度</Label><Input id="width" defaultValue="100%" className="theme-input col-span-2 h-8" /></div></div></div></PopoverContent></Popover>
-              <Tooltip><TooltipTrigger><Button variant="outline">悬停提示</Button></TooltipTrigger><TooltipContent><p>这是一个提示</p></TooltipContent></Tooltip>
+              <Popover><PopoverTrigger render={<Button variant="outline">打开气泡</Button>} /><PopoverContent className="w-80"><div className="grid gap-4"><div className="space-y-2"><h4 className="font-medium leading-none">尺寸</h4><p className="text-sm text-muted-foreground">选择产品尺寸</p></div><div className="grid gap-2"><div className="grid grid-cols-3 items-center gap-4"><Label htmlFor="width">宽度</Label><Input id="width" defaultValue="100%" className="theme-input col-span-2 h-8" /></div></div></div></PopoverContent></Popover>
+              <Tooltip><TooltipTrigger render={<Button variant="outline">悬停提示</Button>} /><TooltipContent><p>这是一个提示</p></TooltipContent></Tooltip>
             </CardContent>
           </Card>
         </TabsContent>
@@ -511,7 +824,7 @@ function Nav() {
         <CardHeader><CardTitle>下拉菜单</CardTitle></CardHeader>
         <CardContent className="flex gap-4">
           <DropdownMenu>
-            <DropdownMenuTrigger><Button variant="outline">打开菜单</Button></DropdownMenuTrigger>
+            <DropdownMenuTrigger render={<Button variant="outline">打开菜单</Button>} />
             <DropdownMenuContent className="w-56">
               <DropdownMenuLabel>我的账户</DropdownMenuLabel>
               <DropdownMenuSeparator />
@@ -537,7 +850,13 @@ function Nav() {
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
   const [activeMenu, setActiveMenu] = useState("overview");
-  const [activePalette, setActivePalette] = useState<ThemePalette>("base");
+  const [activePalette, setActivePalette] = useState<ThemePalette>(() => {
+    if (typeof window === "undefined") {
+      return "base";
+    }
+
+    return normalizeStoredPalette(window.localStorage.getItem(PALETTE_STORAGE_KEY)) ?? "base";
+  });
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -547,17 +866,8 @@ export default function Home() {
   const [sliderValue, setSliderValue] = useState([50]);
   const [switchOn, setSwitchOn] = useState(false);
   const [generalTab, setGeneralTab] = useState("buttons");
-  const [formTab, setFormTab] = useState("inputs");
   const [feedbackTab, setFeedbackTab] = useState("dialogs");
   const [dataTab, setDataTab] = useState("tables");
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem(PALETTE_STORAGE_KEY);
-    const normalized = normalizeStoredPalette(stored);
-    if (normalized) {
-      setActivePalette(normalized);
-    }
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setProgress((p) => (p >= 100 ? 0 : p + 10)), 1000);
@@ -570,7 +880,6 @@ export default function Home() {
   }, [activePalette]);
 
   const isDarkMode = resolvedTheme === "dark";
-  const currentPalette = paletteOptions.find((option) => option.id === activePalette) ?? paletteOptions[0];
 
   const handleLoading = () => {
     setLoading(true);
@@ -587,7 +896,7 @@ export default function Home() {
   const contentMap: Record<string, React.ReactElement> = {
     overview: <Overview progress={progress} />,
     general: <General generalTab={generalTab} setGeneralTab={setGeneralTab} loading={loading} handleLoading={handleLoading} />,
-    form: <Form formTab={formTab} setFormTab={setFormTab} switchOn={switchOn} setSwitchOn={setSwitchOn} isDarkMode={isDarkMode} setTheme={setTheme} sliderValue={sliderValue} setSliderValue={setSliderValue} />,
+    form: <Form switchOn={switchOn} setSwitchOn={setSwitchOn} isDarkMode={isDarkMode} setTheme={setTheme} sliderValue={sliderValue} setSliderValue={setSliderValue} />,
     feedback: <Feedback feedbackTab={feedbackTab} setFeedbackTab={setFeedbackTab} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} sheetOpen={sheetOpen} setSheetOpen={setSheetOpen} alertOpen={alertOpen} setAlertOpen={setAlertOpen} />,
     data: <Data dataTab={dataTab} setDataTab={setDataTab} loading={loading} handleLoading={handleLoading} />,
     nav: <Nav />,
@@ -595,19 +904,19 @@ export default function Home() {
 
   return (
     <div className="theme-shell flex min-h-screen bg-background text-foreground">
-      <aside className={cn(collapsed ? "w-20" : "w-72", "theme-sidebar flex flex-col border-r transition-all duration-300")}>
-        <div className="flex items-center justify-between border-b px-5 py-4">
+      <aside className={cn(collapsed ? "w-18" : "w-64", "theme-sidebar flex flex-col border-r transition-all duration-300")}>
+        <div className="theme-sidebar-brand flex min-h-[76px] items-center justify-between border-b px-5 py-2.5">
           {!collapsed && (
-            <div className="space-y-1">
-              <span className="block text-lg font-bold tracking-tight">UI Demo</span>
-              <span className="block text-xs text-muted-foreground">Palette Playground</span>
+            <div className="space-y-0.5">
+              <span className="block text-lg font-semibold tracking-tight text-sidebar-foreground">UI Demo</span>
+              <span className="block text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground/70">Playground</span>
             </div>
           )}
-          <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)}>
+          <Button variant="ghost" size="icon" className="rounded-xl text-muted-foreground hover:bg-white/60 hover:text-foreground" onClick={() => setCollapsed(!collapsed)}>
             {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronRight className="h-4 w-4 rotate-180" />}
           </Button>
         </div>
-        <nav className="flex-1 space-y-1 p-3">
+        <nav className="flex-1 space-y-1 px-3 py-2.5">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const active = activeMenu === item.id;
@@ -617,12 +926,13 @@ export default function Home() {
                 key={item.id}
                 onClick={() => setActiveMenu(item.id)}
                 className={cn(
-                  "flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left text-sm transition-all",
-                  active ? "theme-selected-surface shadow-sm ring-1" : "hover:bg-muted/70"
+                  "theme-nav-item relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-all duration-200",
+                  collapsed ? "justify-center px-0" : "pr-4 pl-4",
+                  active ? "theme-nav-item-active" : ""
                 )}
               >
-                <Icon className="h-5 w-5 shrink-0" />
-                {!collapsed && <span className="truncate font-medium">{item.label}</span>}
+                <Icon className="theme-nav-icon h-5 w-5 shrink-0 transition-colors" />
+                {!collapsed && <span className="truncate font-medium tracking-[0.01em]">{item.label}</span>}
               </button>
             );
           })}
@@ -631,13 +941,52 @@ export default function Home() {
 
       <main className="flex min-w-0 flex-1 flex-col">
         <header className="theme-header border-b border-border/70 px-6 py-3">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <h1 className="text-xl font-semibold">{menuItems.find((m) => m.id === activeMenu)?.label}</h1>
+          <div className="flex min-h-[52px] flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="hidden h-9 w-px bg-border/70 lg:block" />
+              <nav className="flex flex-wrap items-center gap-2">
+                {topModules.map((module) => {
+                  const active = module.id === "system";
+
+                  return (
+                    <button
+                      key={module.id}
+                      type="button"
+                      className={cn(
+                        "theme-module-tab rounded-2xl px-5 py-2.5 text-sm font-semibold tracking-[0.01em] transition-all duration-200",
+                        active
+                          ? "theme-module-tab-active"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      {module.label}
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
             <div className="flex flex-wrap items-center gap-3">
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input type="search" placeholder="搜索..." className="theme-input w-64 pl-8" />
               </div>
+              <Popover>
+                <PopoverTrigger render={
+                  <Button variant="ghost" size="icon" aria-label="主题设置">
+                    <Palette className="h-5 w-5" />
+                  </Button>
+                } />
+                <PopoverContent align="end" className="w-[min(92vw,720px)] rounded-3xl border-border/70 p-4 shadow-[0_18px_36px_color-mix(in_oklch,var(--app-highlight)_10%,transparent)]">
+                  <div className="mb-3 flex items-center justify-between gap-3">
+                    <div className="space-y-1">
+                      <h3 className="text-sm font-semibold">主题示意</h3>
+                      <p className="text-xs text-muted-foreground">将主题切换收纳到辅助工具，不占用主导航层。</p>
+                    </div>
+                    <Badge variant="outline" className="rounded-full">Display Only</Badge>
+                  </div>
+                  <ThemeToolbar activePalette={activePalette} setActivePalette={setActivePalette} isDarkMode={isDarkMode} toggleMode={toggleMode} />
+                </PopoverContent>
+              </Popover>
               <Button variant="ghost" size="icon" onClick={() => toast.info("通知")}>
                 <Bell className="h-5 w-5" />
               </Button>
@@ -650,20 +999,10 @@ export default function Home() {
 
         <div className="flex-1 overflow-auto">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 p-6">
-            <Card className="theme-accent-panel">
-              <CardHeader>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline" className="rounded-full border-primary/20 bg-primary/10 text-primary">
-                    <Palette className="mr-1 h-3.5 w-3.5" />
-                    主题切换
-                  </Badge>
-                  <Badge variant="outline" className="rounded-full">{currentPalette.label}</Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <ThemeToolbar activePalette={activePalette} setActivePalette={setActivePalette} isDarkMode={isDarkMode} toggleMode={toggleMode} />
-              </CardContent>
-            </Card>
+            <div className="space-y-1">
+              <h2 className="text-xl font-semibold">{menuItems.find((m) => m.id === activeMenu)?.label}</h2>
+              <p className="text-sm text-muted-foreground">左侧负责当前模块内页面导航，内容区专注展示组件与规范。</p>
+            </div>
             {contentMap[activeMenu]}
           </div>
         </div>
