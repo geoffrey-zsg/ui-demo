@@ -64,3 +64,4 @@ lerna-debug.log*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+.gstack/

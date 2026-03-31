@@ -81,6 +81,23 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --app-shell: linear-gradient(180deg, oklch(0.99 0.004 240) 0%, oklch(0.975 0.006 255) 100%);
+  --app-shell-glow: radial-gradient(circle at top left, oklch(0.88 0.03 255 / 0.5), transparent 32%);
+  --app-sidebar: color-mix(in oklch, var(--card) 88%, oklch(0.96 0.01 250) 12%);
+  --app-header: color-mix(in oklch, var(--card) 86%, transparent);
+  --app-panel-shadow: 0 14px 40px oklch(0.45 0.03 255 / 0.08);
+  --app-panel-border: color-mix(in oklch, var(--border) 88%, var(--primary) 12%);
+  --app-accent-soft: color-mix(in oklch, var(--primary) 10%, white);
+  --app-accent-strong: color-mix(in oklch, var(--primary) 70%, black);
+  --app-grid-line: oklch(0.88 0.01 250 / 0.6);
+  --app-input-bg: color-mix(in oklch, var(--card) 82%, var(--muted) 18%);
+  --app-stat-positive: oklch(0.64 0.18 150);
+  --app-stat-warning: oklch(0.78 0.16 85);
+  --app-stat-danger: oklch(0.63 0.22 25);
+  --app-highlight: var(--primary);
+  --app-sidebar-active-bg: color-mix(in oklch, var(--primary) 14%, white);
+  --app-sidebar-active-fg: color-mix(in oklch, var(--primary) 74%, black);
+  --app-theme-card-bg: color-mix(in oklch, var(--card) 90%, var(--primary) 10%);
 }
 
 .dark {
@@ -115,16 +132,410 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --app-shell: linear-gradient(180deg, oklch(0.17 0.01 255) 0%, oklch(0.13 0.01 255) 100%);
+  --app-shell-glow: radial-gradient(circle at top left, oklch(0.48 0.09 255 / 0.28), transparent 34%);
+  --app-sidebar: color-mix(in oklch, var(--card) 90%, black 10%);
+  --app-header: color-mix(in oklch, var(--card) 84%, transparent);
+  --app-panel-shadow: 0 18px 48px oklch(0.04 0 0 / 0.45);
+  --app-panel-border: color-mix(in oklch, var(--border) 82%, var(--primary) 18%);
+  --app-accent-soft: color-mix(in oklch, var(--primary) 20%, black);
+  --app-accent-strong: color-mix(in oklch, var(--primary) 78%, white);
+  --app-grid-line: oklch(0.36 0.015 255 / 0.55);
+  --app-input-bg: color-mix(in oklch, var(--card) 78%, var(--muted) 22%);
+  --app-stat-positive: oklch(0.74 0.16 150);
+  --app-stat-warning: oklch(0.84 0.15 88);
+  --app-stat-danger: oklch(0.7 0.19 24);
+  --app-highlight: var(--primary);
+  --app-sidebar-active-bg: color-mix(in oklch, var(--primary) 22%, black);
+  --app-sidebar-active-fg: color-mix(in oklch, var(--primary) 72%, white);
+  --app-theme-card-bg: color-mix(in oklch, var(--card) 84%, var(--primary) 16%);
+}
+
+:root[data-ui-theme="enterprise"] {
+  --background: #f4f4f4;
+  --foreground: #393939;
+  --card: #ffffff;
+  --card-foreground: #262626;
+  --popover: #ffffff;
+  --popover-foreground: #262626;
+  --primary: #0f62fe;
+  --primary-foreground: #ffffff;
+  --secondary: #e0e0e0;
+  --secondary-foreground: #262626;
+  --muted: #f4f4f4;
+  --muted-foreground: #6f6f6f;
+  --accent: #edf5ff;
+  --accent-foreground: #0043ce;
+  --destructive: #da1e28;
+  --border: #c6c6c6;
+  --input: #c6c6c6;
+  --ring: color-mix(in srgb, #0f62fe 36%, white);
+  --chart-1: #0f62fe;
+  --chart-2: #005d5d;
+  --chart-3: #198038;
+  --chart-4: #8a3ffc;
+  --chart-5: #f1c21b;
+  --sidebar: #e0e0e0;
+  --sidebar-foreground: #262626;
+  --sidebar-primary: #0f62fe;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f4f4;
+  --sidebar-accent-foreground: #393939;
+  --sidebar-border: #c6c6c6;
+  --sidebar-ring: color-mix(in srgb, #0f62fe 36%, white);
+  --app-shell: linear-gradient(180deg, #f4f4f4 0%, #eef2f6 100%);
+  --app-shell-glow: radial-gradient(circle at top left, rgba(15, 98, 254, 0.14), transparent 30%);
+  --app-sidebar: linear-gradient(180deg, #e0e0e0 0%, #d7dde4 100%);
+  --app-header: rgba(255, 255, 255, 0.82);
+  --app-panel-shadow: 0 10px 30px rgba(8, 28, 63, 0.08);
+  --app-panel-border: rgba(15, 98, 254, 0.12);
+  --app-accent-soft: #edf5ff;
+  --app-accent-strong: #0043ce;
+  --app-grid-line: rgba(166, 183, 204, 0.55);
+  --app-input-bg: #f4f4f4;
+  --app-stat-positive: #198038;
+  --app-stat-warning: #b28600;
+  --app-stat-danger: #da1e28;
+  --app-highlight: #0f62fe;
+  --app-sidebar-active-bg: #edf5ff;
+  --app-sidebar-active-fg: #0043ce;
+  --app-theme-card-bg: #edf5ff;
+}
+
+.dark[data-ui-theme="enterprise"] {
+  --background: #161616;
+  --foreground: #f4f4f4;
+  --card: #262626;
+  --card-foreground: #f4f4f4;
+  --popover: #262626;
+  --popover-foreground: #f4f4f4;
+  --primary: #4589ff;
+  --primary-foreground: #081b3f;
+  --secondary: #393939;
+  --secondary-foreground: #f4f4f4;
+  --muted: #262626;
+  --muted-foreground: #a8a8a8;
+  --accent: rgba(69, 137, 255, 0.18);
+  --accent-foreground: #a6c8ff;
+  --destructive: #ff8389;
+  --border: rgba(244, 244, 244, 0.12);
+  --input: rgba(244, 244, 244, 0.18);
+  --ring: rgba(69, 137, 255, 0.48);
+  --chart-1: #78a9ff;
+  --chart-2: #3ddbd9;
+  --chart-3: #42be65;
+  --chart-4: #be95ff;
+  --chart-5: #f1c21b;
+  --sidebar: #1f1f1f;
+  --sidebar-foreground: #f4f4f4;
+  --sidebar-primary: #4589ff;
+  --sidebar-primary-foreground: #081b3f;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #f4f4f4;
+  --sidebar-border: rgba(244, 244, 244, 0.1);
+  --sidebar-ring: rgba(69, 137, 255, 0.48);
+  --app-shell: linear-gradient(180deg, #161616 0%, #101922 100%);
+  --app-shell-glow: radial-gradient(circle at top left, rgba(69, 137, 255, 0.26), transparent 34%);
+  --app-sidebar: linear-gradient(180deg, #1f1f1f 0%, #192129 100%);
+  --app-header: rgba(22, 22, 22, 0.8);
+  --app-panel-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+  --app-panel-border: rgba(69, 137, 255, 0.16);
+  --app-accent-soft: rgba(69, 137, 255, 0.18);
+  --app-accent-strong: #a6c8ff;
+  --app-grid-line: rgba(65, 88, 112, 0.48);
+  --app-input-bg: rgba(244, 244, 244, 0.06);
+  --app-stat-positive: #42be65;
+  --app-stat-warning: #f1c21b;
+  --app-stat-danger: #ff8389;
+  --app-highlight: #4589ff;
+  --app-sidebar-active-bg: rgba(69, 137, 255, 0.18);
+  --app-sidebar-active-fg: #a6c8ff;
+  --app-theme-card-bg: rgba(69, 137, 255, 0.12);
+}
+
+:root[data-ui-theme="lagoon"] {
+  --background: oklch(0.985 0.008 190);
+  --foreground: oklch(0.29 0.03 205);
+  --card: oklch(0.995 0.006 190);
+  --card-foreground: oklch(0.27 0.03 205);
+  --popover: oklch(0.995 0.006 190);
+  --popover-foreground: oklch(0.27 0.03 205);
+  --primary: oklch(0.61 0.13 195);
+  --primary-foreground: oklch(0.98 0.01 190);
+  --secondary: oklch(0.94 0.02 185);
+  --secondary-foreground: oklch(0.33 0.03 205);
+  --muted: oklch(0.95 0.015 190);
+  --muted-foreground: oklch(0.52 0.03 205);
+  --accent: oklch(0.93 0.03 170);
+  --accent-foreground: oklch(0.3 0.05 195);
+  --destructive: oklch(0.62 0.22 28);
+  --border: oklch(0.88 0.02 190);
+  --input: oklch(0.89 0.02 190);
+  --ring: oklch(0.75 0.09 195);
+  --chart-1: oklch(0.61 0.13 195);
+  --chart-2: oklch(0.7 0.11 165);
+  --chart-3: oklch(0.73 0.15 100);
+  --chart-4: oklch(0.67 0.11 240);
+  --chart-5: oklch(0.69 0.14 35);
+  --sidebar: oklch(0.94 0.018 190);
+  --sidebar-foreground: oklch(0.27 0.03 205);
+  --sidebar-primary: oklch(0.61 0.13 195);
+  --sidebar-primary-foreground: oklch(0.98 0.01 190);
+  --sidebar-accent: oklch(0.97 0.01 190);
+  --sidebar-accent-foreground: oklch(0.35 0.03 205);
+  --sidebar-border: oklch(0.88 0.02 190);
+  --sidebar-ring: oklch(0.75 0.09 195);
+  --app-shell: linear-gradient(180deg, oklch(0.985 0.008 190) 0%, oklch(0.95 0.015 205) 100%);
+  --app-shell-glow: radial-gradient(circle at top left, oklch(0.78 0.11 195 / 0.24), transparent 30%);
+  --app-sidebar: linear-gradient(180deg, oklch(0.95 0.018 190) 0%, oklch(0.9 0.02 200) 100%);
+  --app-header: color-mix(in oklch, white 82%, var(--secondary) 18%);
+  --app-panel-shadow: 0 14px 36px oklch(0.45 0.04 205 / 0.08);
+  --app-panel-border: oklch(0.8 0.06 195 / 0.18);
+  --app-accent-soft: oklch(0.94 0.03 170);
+  --app-accent-strong: oklch(0.44 0.08 195);
+  --app-grid-line: oklch(0.84 0.03 195 / 0.52);
+  --app-input-bg: oklch(0.965 0.014 190);
+  --app-highlight: oklch(0.61 0.13 195);
+  --app-sidebar-active-bg: oklch(0.9 0.05 190);
+  --app-sidebar-active-fg: oklch(0.38 0.08 195);
+  --app-theme-card-bg: oklch(0.93 0.04 190);
+}
+
+.dark[data-ui-theme="lagoon"] {
+  --background: oklch(0.19 0.022 205);
+  --foreground: oklch(0.95 0.01 190);
+  --card: oklch(0.23 0.022 205);
+  --card-foreground: oklch(0.95 0.01 190);
+  --popover: oklch(0.23 0.022 205);
+  --popover-foreground: oklch(0.95 0.01 190);
+  --primary: oklch(0.73 0.12 185);
+  --primary-foreground: oklch(0.2 0.02 205);
+  --secondary: oklch(0.3 0.024 205);
+  --secondary-foreground: oklch(0.95 0.01 190);
+  --muted: oklch(0.27 0.02 205);
+  --muted-foreground: oklch(0.73 0.03 190);
+  --accent: oklch(0.35 0.04 170);
+  --accent-foreground: oklch(0.92 0.02 170);
+  --destructive: oklch(0.72 0.16 28);
+  --border: oklch(0.42 0.02 205 / 0.6);
+  --input: oklch(0.42 0.02 205 / 0.72);
+  --ring: oklch(0.73 0.12 185 / 0.5);
+  --chart-1: oklch(0.74 0.11 185);
+  --chart-2: oklch(0.77 0.11 160);
+  --chart-3: oklch(0.8 0.14 95);
+  --chart-4: oklch(0.72 0.11 245);
+  --chart-5: oklch(0.76 0.13 38);
+  --sidebar: oklch(0.22 0.022 205);
+  --sidebar-foreground: oklch(0.95 0.01 190);
+  --sidebar-primary: oklch(0.73 0.12 185);
+  --sidebar-primary-foreground: oklch(0.2 0.02 205);
+  --sidebar-accent: oklch(0.27 0.02 205);
+  --sidebar-accent-foreground: oklch(0.95 0.01 190);
+  --sidebar-border: oklch(0.42 0.02 205 / 0.6);
+  --sidebar-ring: oklch(0.73 0.12 185 / 0.5);
+  --app-shell: linear-gradient(180deg, oklch(0.19 0.022 205) 0%, oklch(0.16 0.03 225) 100%);
+  --app-shell-glow: radial-gradient(circle at top left, oklch(0.72 0.11 185 / 0.18), transparent 34%);
+  --app-sidebar: linear-gradient(180deg, oklch(0.22 0.022 205) 0%, oklch(0.2 0.03 220) 100%);
+  --app-header: color-mix(in oklch, var(--card) 82%, transparent);
+  --app-panel-shadow: 0 18px 48px oklch(0.03 0.01 205 / 0.42);
+  --app-panel-border: oklch(0.74 0.11 185 / 0.16);
+  --app-accent-soft: oklch(0.35 0.04 170);
+  --app-accent-strong: oklch(0.84 0.07 185);
+  --app-grid-line: oklch(0.44 0.03 205 / 0.42);
+  --app-input-bg: oklch(0.27 0.02 205);
+  --app-highlight: oklch(0.73 0.12 185);
+  --app-sidebar-active-bg: oklch(0.34 0.05 190);
+  --app-sidebar-active-fg: oklch(0.86 0.06 185);
+  --app-theme-card-bg: oklch(0.3 0.04 190);
+}
+
+:root[data-ui-theme="mist"] {
+  --background: #f4f7f7;
+  --foreground: #3b4b50;
+  --card: #ffffff;
+  --card-foreground: #1f2e33;
+  --popover: #ffffff;
+  --popover-foreground: #1f2e33;
+  --primary: #3a7e8c;
+  --primary-foreground: #ffffff;
+  --secondary: #ecf1f1;
+  --secondary-foreground: #2f4348;
+  --muted: #ecf1f1;
+  --muted-foreground: #6b7c81;
+  --accent: #eaf4f5;
+  --accent-foreground: #234852;
+  --destructive: #d64545;
+  --border: #d6e0e1;
+  --input: #d6e0e1;
+  --ring: rgba(58, 126, 140, 0.28);
+  --chart-1: #3a7e8c;
+  --chart-2: #6fa8b2;
+  --chart-3: #198754;
+  --chart-4: #234852;
+  --chart-5: #d6a23d;
+  --sidebar: #ecf1f1;
+  --sidebar-foreground: #1f2e33;
+  --sidebar-primary: #3a7e8c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f7f7;
+  --sidebar-accent-foreground: #3b4b50;
+  --sidebar-border: #d6e0e1;
+  --sidebar-ring: rgba(58, 126, 140, 0.28);
+  --app-shell: linear-gradient(180deg, #f4f7f7 0%, #eef3f4 100%);
+  --app-shell-glow: radial-gradient(circle at top left, rgba(111, 168, 178, 0.18), transparent 30%);
+  --app-sidebar: linear-gradient(180deg, #edf2f2 0%, #e6eeee 100%);
+  --app-header: rgba(255, 255, 255, 0.82);
+  --app-panel-shadow: 0 14px 36px rgba(31, 46, 51, 0.08);
+  --app-panel-border: rgba(58, 126, 140, 0.14);
+  --app-accent-soft: #eaf4f5;
+  --app-accent-strong: #234852;
+  --app-grid-line: rgba(214, 224, 225, 0.5);
+  --app-input-bg: #f6f9f9;
+  --app-highlight: #3a7e8c;
+  --app-sidebar-active-bg: #deedf0;
+  --app-sidebar-active-fg: #234852;
+  --app-theme-card-bg: #eef6f7;
+}
+
+.dark[data-ui-theme="mist"] {
+  --background: #162125;
+  --foreground: #c6d4d7;
+  --card: #1d2b30;
+  --card-foreground: #e7f0f1;
+  --popover: #1d2b30;
+  --popover-foreground: #e7f0f1;
+  --primary: #6fa8b2;
+  --primary-foreground: #162125;
+  --secondary: #223238;
+  --secondary-foreground: #e7f0f1;
+  --muted: #223238;
+  --muted-foreground: #8ea3a8;
+  --accent: rgba(111, 168, 178, 0.18);
+  --accent-foreground: #d7e8eb;
+  --destructive: #d64545;
+  --border: rgba(49, 66, 71, 0.8);
+  --input: rgba(49, 66, 71, 0.9);
+  --ring: rgba(111, 168, 178, 0.38);
+  --chart-1: #6fa8b2;
+  --chart-2: #8fc0c8;
+  --chart-3: #198754;
+  --chart-4: #d7e8eb;
+  --chart-5: #d6a23d;
+  --sidebar: #1a272b;
+  --sidebar-foreground: #e7f0f1;
+  --sidebar-primary: #6fa8b2;
+  --sidebar-primary-foreground: #162125;
+  --sidebar-accent: #223238;
+  --sidebar-accent-foreground: #e7f0f1;
+  --sidebar-border: rgba(49, 66, 71, 0.8);
+  --sidebar-ring: rgba(111, 168, 178, 0.38);
+  --app-shell: linear-gradient(180deg, #162125 0%, #121b1f 100%);
+  --app-shell-glow: radial-gradient(circle at top left, rgba(111, 168, 178, 0.16), transparent 34%);
+  --app-sidebar: linear-gradient(180deg, #1a272b 0%, #162125 100%);
+  --app-header: rgba(22, 33, 37, 0.82);
+  --app-panel-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --app-panel-border: rgba(111, 168, 178, 0.16);
+  --app-accent-soft: rgba(111, 168, 178, 0.18);
+  --app-accent-strong: #d7e8eb;
+  --app-grid-line: rgba(49, 66, 71, 0.44);
+  --app-input-bg: #1e2d31;
+  --app-highlight: #6fa8b2;
+  --app-sidebar-active-bg: #294048;
+  --app-sidebar-active-fg: #d7e8eb;
+  --app-theme-card-bg: #22353a;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image: var(--app-shell-glow), var(--app-shell);
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 24%, transparent);
+  }
+}
+
+@layer components {
+  [data-slot="card"] {
+    border-color: var(--app-panel-border);
+    box-shadow: var(--app-panel-shadow);
+    background: color-mix(in oklch, var(--card) 94%, var(--app-accent-soft) 6%);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  [data-slot="card"]:hover {
+    box-shadow: 0 18px 44px color-mix(in oklch, black 10%, transparent);
+  }
+
+  [data-slot="tabs-list"] {
+    background: color-mix(in oklch, var(--muted) 72%, var(--app-accent-soft) 28%);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border) 86%, transparent);
+  }
+
+  [data-slot="progress-indicator"] {
+    background: var(--app-highlight);
+  }
+
+  [data-slot="button"][data-disabled] {
+    box-shadow: none;
+  }
+}
+
+@layer utilities {
+  .theme-shell {
+    background-image: var(--app-shell-glow), var(--app-shell);
+  }
+
+  .theme-sidebar {
+    background: var(--app-sidebar);
+    border-color: var(--sidebar-border);
+  }
+
+  .theme-header {
+    background: var(--app-header);
+    backdrop-filter: blur(18px);
+  }
+
+  .theme-input {
+    background: var(--app-input-bg);
+  }
+
+  .theme-accent-panel {
+    background: color-mix(in oklch, var(--card) 96%, var(--app-accent-soft) 4%);
+  }
+
+  .theme-outline {
+    border-color: var(--app-panel-border);
+  }
+
+  .theme-positive {
+    color: var(--app-stat-positive);
+  }
+
+  .theme-title {
+    color: var(--app-highlight);
+  }
+
+  .theme-selected-surface {
+    background: var(--app-sidebar-active-bg);
+    color: var(--app-sidebar-active-fg);
+    border-color: color-mix(in oklch, var(--app-highlight) 30%, transparent);
+  }
+
+  .theme-preview-card {
+    background: var(--app-theme-card-bg);
   }
 }
