@@ -191,105 +191,105 @@
 }
 
 :root[data-ui-theme="enterprise"] {
-  --background: #edf2f8;
-  --foreground: #223042;
-  --card: #fbfdff;
-  --card-foreground: #182334;
-  --popover: #fbfdff;
-  --popover-foreground: #182334;
-  --primary: #2b63c6;
+  --background: #f4f7fb;
+  --foreground: #1f2d3d;
+  --card: #ffffff;
+  --card-foreground: #162232;
+  --popover: #ffffff;
+  --popover-foreground: #162232;
+  --primary: #3f86f6;
   --primary-foreground: #f7fbff;
-  --secondary: #dce4ee;
-  --secondary-foreground: #223042;
-  --muted: #e7edf5;
-  --muted-foreground: #617288;
-  --accent: #dfeafb;
-  --accent-foreground: #214d97;
-  --destructive: #cf4454;
-  --border: #c9d5e3;
-  --input: #ccd8e5;
-  --ring: color-mix(in srgb, #2b63c6 34%, white);
-  --chart-1: #2b63c6;
-  --chart-2: #4b7fc8;
-  --chart-3: #1e7f67;
-  --chart-4: #6f84b8;
-  --chart-5: #c6943f;
-  --sidebar: #e2eaf3;
-  --sidebar-foreground: #182334;
-  --sidebar-primary: #2b63c6;
+  --secondary: #e9eff6;
+  --secondary-foreground: #243447;
+  --muted: #eef3f8;
+  --muted-foreground: #62768f;
+  --accent: #edf4ff;
+  --accent-foreground: #2564c7;
+  --destructive: #d64d5d;
+  --border: #d3deeb;
+  --input: #d4dfeb;
+  --ring: color-mix(in srgb, #3f86f6 34%, white);
+  --chart-1: #3f86f6;
+  --chart-2: #619bf5;
+  --chart-3: #1f8a71;
+  --chart-4: #728cbc;
+  --chart-5: #c89c42;
+  --sidebar: #fbfcfe;
+  --sidebar-foreground: #182538;
+  --sidebar-primary: #3f86f6;
   --sidebar-primary-foreground: #f7fbff;
-  --sidebar-accent: #eef3f9;
-  --sidebar-accent-foreground: #223042;
-  --sidebar-border: #c6d2e0;
-  --sidebar-ring: color-mix(in srgb, #2b63c6 34%, white);
-  --app-shell: linear-gradient(180deg, #eef3f8 0%, #e6edf6 100%);
-  --app-shell-glow: radial-gradient(circle at top left, rgba(43, 99, 198, 0.14), transparent 30%);
-  --app-sidebar: linear-gradient(180deg, #e3ebf4 0%, #d8e2ee 100%);
-  --app-header: rgba(251, 253, 255, 0.82);
-  --app-panel-shadow: 0 12px 28px rgba(17, 37, 68, 0.09);
-  --app-panel-border: rgba(43, 99, 198, 0.14);
-  --app-accent-soft: #e6effc;
-  --app-accent-strong: #214d97;
-  --app-grid-line: rgba(158, 177, 200, 0.52);
-  --app-input-bg: #f1f5fa;
-  --app-stat-positive: #177a5b;
-  --app-stat-warning: #b4822e;
-  --app-stat-danger: #cf4454;
-  --app-highlight: #2b63c6;
-  --app-sidebar-active-bg: #e3edfb;
-  --app-sidebar-active-fg: #214d97;
-  --app-theme-card-bg: #e6effc;
+  --sidebar-accent: #f6f9fc;
+  --sidebar-accent-foreground: #243447;
+  --sidebar-border: #cfdae8;
+  --sidebar-ring: color-mix(in srgb, #3f86f6 34%, white);
+  --app-shell: linear-gradient(180deg, #f4f7fb 0%, #f4f7fb 100%);
+  --app-shell-glow: none;
+  --app-sidebar: #fbfcfe;
+  --app-header: rgba(251, 253, 255, 0.96);
+  --app-panel-shadow: 0 8px 18px rgba(18, 40, 71, 0.045);
+  --app-panel-border: rgba(63, 134, 246, 0.12);
+  --app-accent-soft: #f4f7fb;
+  --app-accent-strong: #2564c7;
+  --app-grid-line: rgba(170, 185, 204, 0.45);
+  --app-input-bg: #f8fafc;
+  --app-stat-positive: #1d8c68;
+  --app-stat-warning: #ba8931;
+  --app-stat-danger: #d64d5d;
+  --app-highlight: #3f86f6;
+  --app-sidebar-active-bg: #eaf2ff;
+  --app-sidebar-active-fg: #2564c7;
+  --app-theme-card-bg: #f8fbff;
 }
 
 .dark[data-ui-theme="enterprise"] {
-  --background: #111924;
-  --foreground: #e5edf7;
-  --card: #192230;
-  --card-foreground: #e8f0fa;
-  --popover: #192230;
-  --popover-foreground: #e8f0fa;
-  --primary: #74a6ff;
-  --primary-foreground: #0f1824;
-  --secondary: #263344;
-  --secondary-foreground: #e5edf7;
-  --muted: #1d2734;
-  --muted-foreground: #93a5bc;
-  --accent: rgba(116, 166, 255, 0.18);
-  --accent-foreground: #bfd6ff;
-  --destructive: #ff8b96;
-  --border: rgba(229, 237, 247, 0.12);
-  --input: rgba(229, 237, 247, 0.16);
-  --ring: rgba(116, 166, 255, 0.5);
-  --chart-1: #74a6ff;
-  --chart-2: #8db5ff;
-  --chart-3: #4ac3a2;
-  --chart-4: #7f95c9;
-  --chart-5: #d2a85a;
-  --sidebar: #161f2b;
-  --sidebar-foreground: #e8f0fa;
-  --sidebar-primary: #74a6ff;
-  --sidebar-primary-foreground: #0f1824;
-  --sidebar-accent: #1b2532;
-  --sidebar-accent-foreground: #e5edf7;
-  --sidebar-border: rgba(229, 237, 247, 0.08);
-  --sidebar-ring: rgba(116, 166, 255, 0.5);
-  --app-shell: linear-gradient(180deg, #111924 0%, #0f1620 100%);
-  --app-shell-glow: radial-gradient(circle at top left, rgba(116, 166, 255, 0.22), transparent 34%);
-  --app-sidebar: linear-gradient(180deg, #18212d 0%, #141c27 100%);
-  --app-header: rgba(17, 25, 36, 0.82);
-  --app-panel-shadow: 0 20px 46px rgba(0, 7, 17, 0.34);
-  --app-panel-border: rgba(116, 166, 255, 0.14);
-  --app-accent-soft: rgba(116, 166, 255, 0.16);
-  --app-accent-strong: #bfd6ff;
-  --app-grid-line: rgba(77, 95, 120, 0.45);
-  --app-input-bg: rgba(229, 237, 247, 0.05);
-  --app-stat-positive: #4ac3a2;
-  --app-stat-warning: #d2a85a;
-  --app-stat-danger: #ff8b96;
-  --app-highlight: #74a6ff;
-  --app-sidebar-active-bg: rgba(116, 166, 255, 0.16);
-  --app-sidebar-active-fg: #bfd6ff;
-  --app-theme-card-bg: rgba(116, 166, 255, 0.14);
+  --background: #111a26;
+  --foreground: #e6eef9;
+  --card: #182332;
+  --card-foreground: #eaf2fd;
+  --popover: #182332;
+  --popover-foreground: #eaf2fd;
+  --primary: #82adff;
+  --primary-foreground: #0f1826;
+  --secondary: #243446;
+  --secondary-foreground: #e6eef9;
+  --muted: #1b2837;
+  --muted-foreground: #96aac3;
+  --accent: rgba(130, 173, 255, 0.16);
+  --accent-foreground: #cfe0ff;
+  --destructive: #ff8a97;
+  --border: rgba(230, 238, 249, 0.12);
+  --input: rgba(230, 238, 249, 0.16);
+  --ring: rgba(130, 173, 255, 0.42);
+  --chart-1: #82adff;
+  --chart-2: #9bbcff;
+  --chart-3: #4cc6a4;
+  --chart-4: #86a0d3;
+  --chart-5: #d7ab58;
+  --sidebar: #152030;
+  --sidebar-foreground: #eaf2fd;
+  --sidebar-primary: #82adff;
+  --sidebar-primary-foreground: #0f1826;
+  --sidebar-accent: #1b2737;
+  --sidebar-accent-foreground: #e6eef9;
+  --sidebar-border: rgba(230, 238, 249, 0.08);
+  --sidebar-ring: rgba(130, 173, 255, 0.42);
+  --app-shell: linear-gradient(180deg, #111a26 0%, #111a26 100%);
+  --app-shell-glow: none;
+  --app-sidebar: #162130;
+  --app-header: rgba(20, 31, 47, 0.94);
+  --app-panel-shadow: 0 12px 28px rgba(0, 8, 20, 0.26);
+  --app-panel-border: rgba(130, 173, 255, 0.12);
+  --app-accent-soft: rgba(130, 173, 255, 0.12);
+  --app-accent-strong: #cfe0ff;
+  --app-grid-line: rgba(82, 101, 128, 0.44);
+  --app-input-bg: rgba(230, 238, 249, 0.05);
+  --app-stat-positive: #4cc6a4;
+  --app-stat-warning: #d7ab58;
+  --app-stat-danger: #ff8a97;
+  --app-highlight: #82adff;
+  --app-sidebar-active-bg: rgba(130, 173, 255, 0.16);
+  --app-sidebar-active-fg: #cfe0ff;
+  --app-theme-card-bg: rgba(130, 173, 255, 0.1);
 }
 
 :root[data-ui-theme="lagoon"] {
@@ -520,12 +520,12 @@
   }
 
   [data-slot="card"]:hover {
-    box-shadow: 0 18px 44px color-mix(in oklch, black 10%, transparent);
+    box-shadow: 0 14px 26px color-mix(in oklch, black 8%, transparent);
   }
 
   [data-slot="tabs-list"] {
-    background: color-mix(in oklch, var(--muted) 72%, var(--app-accent-soft) 28%);
-    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border) 86%, transparent);
+    background: color-mix(in oklch, var(--card) 94%, var(--muted) 6%);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border) 94%, transparent);
   }
 
   [data-slot="progress-indicator"] {
@@ -535,33 +535,165 @@
   [data-slot="button"][data-disabled] {
     box-shadow: none;
   }
+
+  .toaster [data-sonner-toast] {
+    border-radius: calc(var(--radius) * 1.35);
+    border: 1px solid color-mix(in oklch, var(--border) 68%, var(--primary) 32%);
+    border-left-width: 4px;
+    background: color-mix(in oklch, var(--card) 98%, white 2%);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white 78%, transparent),
+      0 16px 36px color-mix(in oklch, black 8%, transparent);
+    padding: 1rem 1rem 1rem 1.125rem;
+    gap: 0.875rem;
+  }
+
+  .toaster [data-sonner-toast] [data-icon] {
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklch, var(--border) 88%, transparent);
+    background: color-mix(in oklch, var(--muted) 82%, white 18%);
+    color: var(--foreground);
+    box-shadow: inset 0 1px 0 color-mix(in oklch, white 70%, transparent);
+  }
+
+  .toaster .cn-toast-title {
+    font-weight: 600;
+    color: var(--foreground);
+    letter-spacing: 0.01em;
+  }
+
+  .toaster .cn-toast-description {
+    color: var(--muted-foreground);
+  }
+
+  .toaster .cn-toast-success,
+  .toaster [data-sonner-toast][data-type="success"] {
+    border-color: color-mix(in oklch, var(--app-stat-positive) 48%, var(--border) 52%);
+    border-left-color: color-mix(in oklch, var(--app-stat-positive) 82%, black 18%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, white 94%, var(--app-stat-positive) 6%),
+      color-mix(in oklch, white 98%, var(--app-stat-positive) 2%)
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white 78%, transparent),
+      0 16px 36px color-mix(in oklch, var(--app-stat-positive) 10%, transparent);
+  }
+
+  .toaster .cn-toast-success [data-icon],
+  .toaster [data-sonner-toast][data-type="success"] [data-icon] {
+    border-color: color-mix(in oklch, var(--app-stat-positive) 24%, transparent);
+    background: color-mix(in oklch, white 82%, var(--app-stat-positive) 18%);
+    color: var(--app-stat-positive);
+  }
+
+  .toaster .cn-toast-success .cn-toast-title,
+  .toaster [data-sonner-toast][data-type="success"] [data-title] {
+    color: color-mix(in oklch, var(--app-stat-positive) 74%, black);
+  }
+
+  .toaster .cn-toast-error,
+  .toaster [data-sonner-toast][data-type="error"] {
+    border-color: color-mix(in oklch, var(--destructive) 46%, var(--border) 54%);
+    border-left-color: color-mix(in oklch, var(--destructive) 82%, black 18%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, white 94%, var(--destructive) 6%),
+      color-mix(in oklch, white 98%, var(--destructive) 2%)
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white 78%, transparent),
+      0 16px 36px color-mix(in oklch, var(--destructive) 9%, transparent);
+  }
+
+  .toaster .cn-toast-error [data-icon],
+  .toaster [data-sonner-toast][data-type="error"] [data-icon] {
+    border-color: color-mix(in oklch, var(--destructive) 24%, transparent);
+    background: color-mix(in oklch, white 84%, var(--destructive) 16%);
+    color: var(--destructive);
+  }
+
+  .toaster .cn-toast-error .cn-toast-title,
+  .toaster [data-sonner-toast][data-type="error"] [data-title] {
+    color: color-mix(in oklch, var(--destructive) 70%, black);
+  }
+
+  .toaster .cn-toast-warning,
+  .toaster [data-sonner-toast][data-type="warning"] {
+    border-color: color-mix(in oklch, var(--app-stat-warning) 52%, var(--border) 48%);
+    border-left-color: color-mix(in oklch, var(--app-stat-warning) 86%, black 14%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, white 93%, var(--app-stat-warning) 7%),
+      color-mix(in oklch, white 98%, var(--app-stat-warning) 2%)
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white 78%, transparent),
+      0 16px 36px color-mix(in oklch, var(--app-stat-warning) 10%, transparent);
+  }
+
+  .toaster .cn-toast-warning [data-icon],
+  .toaster [data-sonner-toast][data-type="warning"] [data-icon] {
+    border-color: color-mix(in oklch, var(--app-stat-warning) 26%, transparent);
+    background: color-mix(in oklch, white 80%, var(--app-stat-warning) 20%);
+    color: color-mix(in oklch, var(--app-stat-warning) 86%, black);
+  }
+
+  .toaster .cn-toast-warning .cn-toast-title,
+  .toaster [data-sonner-toast][data-type="warning"] [data-title] {
+    color: color-mix(in oklch, var(--app-stat-warning) 82%, black);
+  }
+
+  .toaster .cn-toast-info,
+  .toaster [data-sonner-toast][data-type="info"] {
+    border-color: color-mix(in oklch, var(--app-highlight) 44%, var(--border) 56%);
+    border-left-color: color-mix(in oklch, var(--app-highlight) 82%, black 18%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklch, white 94%, var(--app-highlight) 6%),
+      color-mix(in oklch, white 98%, var(--app-highlight) 2%)
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white 78%, transparent),
+      0 16px 36px color-mix(in oklch, var(--app-highlight) 9%, transparent);
+  }
+
+  .toaster .cn-toast-info [data-icon],
+  .toaster [data-sonner-toast][data-type="info"] [data-icon] {
+    border-color: color-mix(in oklch, var(--app-highlight) 22%, transparent);
+    background: color-mix(in oklch, white 82%, var(--app-highlight) 18%);
+    color: var(--app-highlight);
+  }
+
+  .toaster .cn-toast-info .cn-toast-title,
+  .toaster [data-sonner-toast][data-type="info"] [data-title] {
+    color: color-mix(in oklch, var(--app-highlight) 72%, black);
+  }
 }
 
 @layer utilities {
   .theme-shell {
+    background-color: var(--background);
     background-image: var(--app-shell-glow), var(--app-shell);
   }
 
   .theme-sidebar {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--card) 92%, var(--app-accent-soft) 8%),
-      color-mix(in oklch, var(--card) 88%, var(--app-accent-soft) 12%)
-    );
+    background: var(--app-sidebar);
     border-color: var(--sidebar-border);
   }
 
   .theme-header {
     background: var(--app-header);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(4px);
   }
 
   .theme-sidebar-brand {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--card) 94%, var(--app-accent-soft) 6%),
-      color-mix(in oklch, var(--card) 86%, var(--app-accent-soft) 14%)
-    );
+    background: color-mix(in oklch, var(--card) 98%, var(--app-accent-soft) 2%);
     border-color: color-mix(in oklch, var(--sidebar-border) 88%, transparent);
   }
 
@@ -571,26 +703,16 @@
   }
 
   .theme-module-tab:hover {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--card) 86%, var(--app-accent-soft) 14%),
-      color-mix(in oklch, var(--card) 78%, var(--app-accent-soft) 22%)
-    );
-    border-color: color-mix(in oklch, var(--app-highlight) 14%, transparent);
-    box-shadow: 0 10px 20px color-mix(in oklch, var(--app-highlight) 8%, transparent);
+    background: color-mix(in oklch, var(--card) 90%, var(--app-accent-soft) 10%);
+    border-color: color-mix(in oklch, var(--app-highlight) 12%, transparent);
+    box-shadow: 0 6px 12px color-mix(in oklch, var(--app-highlight) 4%, transparent);
   }
 
   .theme-module-tab-active {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--app-sidebar-active-bg) 76%, white 24%),
-      color-mix(in oklch, var(--app-sidebar-active-bg) 92%, transparent)
-    );
+    background: var(--app-sidebar-active-bg);
     border-color: color-mix(in oklch, var(--app-highlight) 24%, transparent);
     color: var(--app-sidebar-active-fg);
-    box-shadow:
-      inset 0 1px 0 color-mix(in oklch, white 78%, transparent),
-      0 14px 26px color-mix(in oklch, var(--app-highlight) 10%, transparent);
+    box-shadow: 0 8px 16px color-mix(in oklch, var(--app-highlight) 6%, transparent);
   }
 
   .theme-nav-item {
@@ -599,26 +721,16 @@
   }
 
   .theme-nav-item:hover {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--app-sidebar-active-bg) 78%, white 22%),
-      color-mix(in oklch, var(--app-sidebar-active-bg) 62%, transparent)
-    );
-    color: color-mix(in oklch, var(--app-sidebar-active-fg) 70%, var(--sidebar-foreground) 30%);
+    background: color-mix(in oklch, var(--app-highlight) 8%, white);
+    color: color-mix(in oklch, var(--app-sidebar-active-fg) 58%, var(--sidebar-foreground) 42%);
     border-color: color-mix(in oklch, var(--app-highlight) 12%, transparent);
   }
 
   .theme-nav-item-active {
-    background: linear-gradient(
-      180deg,
-      color-mix(in oklch, var(--app-sidebar-active-bg) 88%, white 12%),
-      color-mix(in oklch, var(--app-sidebar-active-bg) 96%, transparent)
-    );
+    background: var(--app-sidebar-active-bg);
     color: var(--app-sidebar-active-fg);
-    border-color: color-mix(in oklch, var(--app-highlight) 34%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in oklch, white 72%, transparent),
-      0 12px 28px color-mix(in oklch, var(--app-highlight) 16%, transparent);
+    border-color: color-mix(in oklch, var(--app-highlight) 20%, transparent);
+    box-shadow: 0 8px 16px color-mix(in oklch, var(--app-highlight) 5%, transparent);
   }
 
   .theme-nav-item-active::before {
@@ -642,7 +754,8 @@
   }
 
   .theme-accent-panel {
-    background: color-mix(in oklch, var(--card) 96%, var(--app-accent-soft) 4%);
+    background: var(--card);
+    border-color: color-mix(in oklch, var(--border) 90%, var(--app-highlight) 10%);
   }
 
   .theme-outline {
