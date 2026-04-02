@@ -1000,13 +1000,8 @@ function Nav() {
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
   const [activeMenu, setActiveMenu] = useState("overview");
-  const [activePalette, setActivePalette] = useState<ThemePalette>(() => {
-    if (typeof window === "undefined") {
-      return "base";
-    }
-
-    return normalizeStoredPalette(window.localStorage.getItem(PALETTE_STORAGE_KEY)) ?? "base";
-  });
+  const [activePalette, setActivePalette] = useState<ThemePalette>("base");
+  const [activeModule, setActiveModule] = useState("system");
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -1018,6 +1013,11 @@ export default function Home() {
   const [generalTab, setGeneralTab] = useState("buttons");
   const [feedbackTab, setFeedbackTab] = useState("dialogs");
   const [dataTab, setDataTab] = useState("tables");
+
+  useEffect(() => {
+    const stored = normalizeStoredPalette(window.localStorage.getItem(PALETTE_STORAGE_KEY));
+    if (stored) setActivePalette(stored);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setProgress((p) => (p >= 100 ? 0 : p + 10)), 1000);
@@ -1094,12 +1094,13 @@ export default function Home() {
           <div className="flex min-h-[60px] items-center justify-between px-6">
             <nav className="flex h-[60px] items-stretch gap-10">
               {topModules.map((module) => {
-                const active = module.id === "system";
+                const active = module.id === activeModule;
 
                 return (
                   <button
                     key={module.id}
                     type="button"
+                    onClick={() => setActiveModule(module.id)}
                     className={cn(
                       "group relative inline-flex items-center text-[15px] tracking-[0.01em] transition-colors duration-200",
                       active
