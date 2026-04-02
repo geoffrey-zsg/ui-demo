@@ -58,7 +58,7 @@ const paletteOptions: {
 }[] = [
   { id: "base", label: "经典中性", description: "延续当前默认配色，干净克制，适合作为标准基线。", chips: ["#171717", "#6b7280", "#d4d4d8", "#ffffff"] },
   { id: "enterprise", label: "企业蓝灰", description: "蓝灰主导的后台风格，专业稳重，信息层级清晰。", chips: ["#0f62fe", "#0043ce", "#edf5ff", "#c6c6c6"] },
-  { id: "lagoon", label: "清湾青色", description: "青绿色轻量点缀，观感更轻盈，适合现代数据界面。", chips: ["#1f9bb6", "#70d6b2", "#dff7f4", "#1f3344"] },
+  { id: "lagoon", label: "科技青蓝", description: "青蓝色调沉稳通透，适合云服务、数据平台等技术驱动型产品。", chips: ["#1f9bb6", "#70d6b2", "#dff7f4", "#1f3344"] },
 ];
 
 const showToast = (type: "success" | "error" | "warning" | "info") => {
