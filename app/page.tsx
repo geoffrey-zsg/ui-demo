@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
@@ -29,7 +29,7 @@ import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { AlertTriangle, Bell, Check, CheckCircle2, ChevronRight, Component, Edit, FormInput, Info, LayoutDashboard, Layers, Loader2, Menu, MessageSquare, Moon, Palette, Search, Settings, Star, Sun, User, X } from "lucide-react";
+import { AlertTriangle, Bell, Check, CheckCircle2, ChevronRight, ChevronsLeft, ChevronsRight, Component, Edit, FormInput, Info, LayoutDashboard, Layers, Loader2, Menu, MessageSquare, Moon, Palette, Search, Settings, Star, Sun, User, X } from "lucide-react";
 
 type ThemePalette = "base" | "enterprise" | "lagoon";
 
@@ -214,7 +214,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
   return (
     <div className="space-y-6">
       <Tabs value={generalTab} onValueChange={setGeneralTab}>
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList variant="line">
           <TabsTrigger value="buttons">按钮</TabsTrigger>
           <TabsTrigger value="cards">卡片</TabsTrigger>
           <TabsTrigger value="badges">徽章</TabsTrigger>
@@ -228,7 +228,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
-                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                <div className="flex h-full flex-col rounded-2xl border bg-card p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div className="space-y-1">
                       <h4 className="text-sm font-semibold">按钮类型</h4>
@@ -246,7 +246,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
                   </div>
                 </div>
 
-                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                <div className="flex h-full flex-col rounded-2xl border bg-card p-4">
                   <div className="space-y-1">
                     <h4 className="text-sm font-semibold">使用建议</h4>
                     <p className="text-sm text-muted-foreground">同一区域只保留一个主按钮，危险按钮默认放在操作区右侧。</p>
@@ -260,7 +260,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
               </div>
 
               <div className="grid items-stretch gap-4 lg:grid-cols-2">
-                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                <div className="flex h-full flex-col rounded-2xl border bg-card p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div className="space-y-1">
                       <h4 className="text-sm font-semibold">按钮尺寸</h4>
@@ -284,7 +284,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
                   </div>
                 </div>
 
-                <div className="flex h-full flex-col rounded-2xl border bg-card/80 p-4">
+                <div className="flex h-full flex-col rounded-2xl border bg-card p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div className="space-y-1">
                       <h4 className="text-sm font-semibold">图标组合</h4>
@@ -301,7 +301,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
                 </div>
               </div>
 
-              <div className="rounded-2xl border bg-card/80 p-4">
+              <div className="rounded-2xl border bg-card p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
                     <h4 className="text-sm font-semibold">按钮状态</h4>
@@ -310,7 +310,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
                   <Badge variant="outline" className="rounded-full">State</Badge>
                 </div>
                 <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
-                  <div className="rounded-2xl border bg-background/70 p-4">
+                  <div className="rounded-2xl border bg-card p-4">
                     <div className="space-y-1">
                       <h5 className="text-sm font-semibold">真实交互状态</h5>
                       <p className="text-sm text-muted-foreground">直接悬停下方按钮，验证 hover 是否符合预期。</p>
@@ -327,7 +327,7 @@ function General({ generalTab, setGeneralTab, loading, handleLoading }: { genera
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border bg-background/70 p-4">
+                  <div className="rounded-2xl border bg-card p-4">
                     <div className="space-y-1">
                       <h5 className="text-sm font-semibold">状态说明</h5>
                       <p className="text-sm text-muted-foreground">Hover 不改变语义，只增强反馈。Danger 和 Disabled 必须保持清晰边界。</p>
@@ -423,7 +423,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
                 { label: "状态样例", value: "4" },
                 { label: "使用场景", value: "配置 / 资料" },
               ].map((item) => (
-                <div key={item.label} className="rounded-2xl border border-primary/12 bg-background/70 px-4 py-3">
+                <div key={item.label} className="rounded-2xl border border-primary/12 bg-card px-4 py-3">
                   <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground/80">{item.label}</p>
                   <p className="mt-1 text-sm font-semibold text-foreground">{item.value}</p>
                 </div>
@@ -440,7 +440,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
             <CardDescription>按真实表单节奏组织字段，不再把每个输入拆成独立卡片。</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-4 rounded-3xl border border-border/70 bg-background/70 p-5">
+            <div className="space-y-4 rounded-3xl border border-border/70 bg-card p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="space-y-1">
                   <h4 className="text-sm font-semibold">联系信息</h4>
@@ -472,7 +472,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               </div>
             </div>
 
-            <div className="space-y-4 rounded-3xl border border-border/70 bg-background/70 p-5">
+            <div className="space-y-4 rounded-3xl border border-border/70 bg-card p-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="space-y-1">
                   <h4 className="text-sm font-semibold">项目设置</h4>
@@ -510,7 +510,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
             <CardDescription>集中展示可编辑、只读、禁用和校验报错状态。</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4">
               <div className="flex items-center justify-between gap-3">
                 <Label htmlFor="readonly-code">系统编号</Label>
                 <Badge variant="outline" className="rounded-full text-[11px]">只读</Badge>
@@ -518,7 +518,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               <Input id="readonly-code" readOnly defaultValue="RAG-PRD-2026-031" className="theme-input bg-muted/40" />
               <p className="text-xs text-muted-foreground">只读字段保留信息密度，但不允许用户修改。</p>
             </div>
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4">
               <div className="flex items-center justify-between gap-3">
                 <Label htmlFor="disabled-owner">负责人</Label>
                 <Badge variant="outline" className="rounded-full text-[11px]">禁用</Badge>
@@ -534,7 +534,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               <Input id="invalid-email" type="email" aria-invalid="true" defaultValue="ops@company" className="theme-input" />
               <p className="text-xs text-destructive">请输入有效邮箱地址，示例：ops@company.com</p>
             </div>
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4">
               <div className="flex items-center justify-between gap-3">
                 <Label htmlFor="required-field">审批人</Label>
                 <Badge variant="outline" className="rounded-full text-[11px]">必填</Badge>
@@ -553,7 +553,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
             <CardDescription>包含单选、下拉、复选和开关，模拟真实配置表单。</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4">
               <div className="flex items-center justify-between gap-3">
                 <Label>部署环境</Label>
                 <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Radio</span>
@@ -574,7 +574,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               </RadioGroup>
             </div>
 
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4">
               <div className="flex items-center justify-between gap-3">
                 <Label>技术栈</Label>
                 <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Select</span>
@@ -592,7 +592,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               </Select>
             </div>
 
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 p-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card p-4">
               <div className="flex items-center justify-between gap-3">
                 <Label>功能开关</Label>
                 <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">Checkbox</span>
@@ -619,7 +619,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
             <CardDescription>展示开关、滑块以及表单提交区的组合方式。</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/75 px-4 py-3">
+            <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card px-4 py-3">
               <div className="space-y-1">
                 <Label htmlFor="notify-switch">系统通知</Label>
                 <p className="text-xs text-muted-foreground">打开后将通过站内信推送异常告警。</p>
@@ -627,7 +627,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               <Switch id="notify-switch" checked={switchOn} onCheckedChange={setSwitchOn} />
             </div>
 
-            <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/75 px-4 py-3">
+            <div className="flex items-center justify-between rounded-2xl border border-border/70 bg-card px-4 py-3">
               <div className="space-y-1">
                 <Label htmlFor="theme-switch">深色模式</Label>
                 <p className="text-xs text-muted-foreground">用于验证表单在深浅主题下的状态一致性。</p>
@@ -646,7 +646,7 @@ function Form({ switchOn, setSwitchOn, isDarkMode, setTheme, sliderValue, setSli
               </div>
             </div>
 
-            <div className="space-y-3 rounded-2xl border border-border/70 bg-background/75 px-4 py-4">
+            <div className="space-y-3 rounded-2xl border border-border/70 bg-card px-4 py-4">
               <div className="flex items-center justify-between gap-3">
                 <div className="space-y-1">
                   <Label>资源配额</Label>
@@ -673,7 +673,7 @@ function Feedback({ feedbackTab, setFeedbackTab, dialogOpen, setDialogOpen, shee
   return (
     <div className="space-y-6">
       <Tabs value={feedbackTab} onValueChange={setFeedbackTab}>
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList variant="line">
           <TabsTrigger value="dialogs">对话框</TabsTrigger>
           <TabsTrigger value="sheets">抽屉</TabsTrigger>
           <TabsTrigger value="toasts">通知</TabsTrigger>
@@ -725,10 +725,10 @@ function Feedback({ feedbackTab, setFeedbackTab, dialogOpen, setDialogOpen, shee
           <Card>
             <CardHeader><CardTitle>Toast 通知</CardTitle></CardHeader>
             <CardContent className="flex flex-wrap gap-2">
-              <Button onClick={() => showToast("success")} className="bg-green-600 text-white hover:bg-green-700"><Check className="mr-2 h-4 w-4" />成功</Button>
-              <Button onClick={() => showToast("error")} variant="destructive"><X className="mr-2 h-4 w-4" />错误</Button>
-              <Button onClick={() => showToast("warning")} variant="outline" className="border-yellow-500 text-yellow-700 hover:bg-yellow-500/10 dark:text-yellow-300"><AlertTriangle className="mr-2 h-4 w-4" />警告</Button>
-              <Button onClick={() => showToast("info")} variant="secondary"><Info className="mr-2 h-4 w-4" />信息</Button>
+              <Button onClick={() => showToast("success")} className="h-9 rounded-xl border border-emerald-200 bg-emerald-600 px-4 text-white hover:bg-emerald-700 hover:shadow-[0_12px_24px_color-mix(in_oklch,#059669_24%,transparent)]"><Check className="mr-2 h-4 w-4" />成功</Button>
+              <Button onClick={() => showToast("error")} className="h-9 rounded-xl border border-rose-200 bg-rose-50 px-4 text-rose-700 hover:bg-rose-100 hover:text-rose-800"><X className="mr-2 h-4 w-4" />错误</Button>
+              <Button onClick={() => showToast("warning")} className="h-9 rounded-xl border border-amber-200 bg-amber-50 px-4 text-amber-700 hover:bg-amber-100 hover:text-amber-800 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-200"><AlertTriangle className="mr-2 h-4 w-4" />警告</Button>
+              <Button onClick={() => showToast("info")} className="h-9 rounded-xl border border-blue-200 bg-blue-50 px-4 text-blue-700 hover:bg-blue-100 hover:text-blue-800 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-200"><Info className="mr-2 h-4 w-4" />信息</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -747,10 +747,35 @@ function Feedback({ feedbackTab, setFeedbackTab, dialogOpen, setDialogOpen, shee
 }
 
 function Data({ dataTab, setDataTab, loading, handleLoading }: { dataTab: string; setDataTab: (value: string) => void; loading: boolean; handleLoading: () => void }) {
+  const tableRows = [
+    { id: "USR-1001", n: "张三", e: "zhang@example.com", r: "管理员", team: "平台组", status: "在线", updatedAt: "刚刚" },
+    { id: "USR-1002", n: "李四", e: "li@example.com", r: "用户", team: "销售部", status: "离线", updatedAt: "5 分钟前" },
+    { id: "USR-1003", n: "王五", e: "wang@example.com", r: "编辑", team: "运营部", status: "在线", updatedAt: "12 分钟前" },
+    { id: "USR-1004", n: "赵六", e: "zhao@example.com", r: "审计员", team: "风控组", status: "在线", updatedAt: "18 分钟前" },
+    { id: "USR-1005", n: "钱七", e: "qian@example.com", r: "用户", team: "客户成功", status: "离线", updatedAt: "27 分钟前" },
+    { id: "USR-1006", n: "孙八", e: "sun@example.com", r: "编辑", team: "知识工程", status: "在线", updatedAt: "35 分钟前" },
+    { id: "USR-1007", n: "周九", e: "zhou@example.com", r: "管理员", team: "平台组", status: "在线", updatedAt: "1 小时前" },
+    { id: "USR-1008", n: "吴十", e: "wu@example.com", r: "用户", team: "市场部", status: "离线", updatedAt: "2 小时前" },
+  ];
+  const [keyword, setKeyword] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
+  const filteredRows = tableRows.filter((row) => `${row.n} ${row.e} ${row.team} ${row.r}`.toLowerCase().includes(keyword.trim().toLowerCase()));
+  const totalPages = Math.max(1, Math.ceil(filteredRows.length / pageSize));
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+  const pageStart = (safeCurrentPage - 1) * pageSize;
+  const pagedRows = filteredRows.slice(pageStart, pageStart + pageSize);
+  const roleBadgeClassMap: Record<string, string> = {
+    "管理员": "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-200",
+    "审计员": "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-400/30 dark:bg-violet-400/10 dark:text-violet-200",
+    "编辑": "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-200",
+    "用户": "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-400/30 dark:bg-slate-400/10 dark:text-slate-200",
+  };
+
   return (
     <div className="space-y-6">
       <Tabs value={dataTab} onValueChange={setDataTab}>
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList variant="line">
           <TabsTrigger value="tables">表格</TabsTrigger>
           <TabsTrigger value="accordions">折叠</TabsTrigger>
           <TabsTrigger value="scroll">滚动</TabsTrigger>
@@ -758,20 +783,143 @@ function Data({ dataTab, setDataTab, loading, handleLoading }: { dataTab: string
         </TabsList>
         <TabsContent value="tables" className="mt-4">
           <Card>
-            <CardHeader><CardTitle>数据表格</CardTitle></CardHeader>
-            <CardContent>
+            <CardHeader>
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <div className="space-y-1">
+                  <CardTitle>数据表格</CardTitle>
+                  <CardDescription>补齐后台列表页需要的检索、统计和分页，不再只是基础表格示例。</CardDescription>
+                </div>
+                <div className="grid gap-2 sm:grid-cols-3 lg:min-w-[420px]">
+                  <div className="rounded-2xl border border-border/70 bg-card px-4 py-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground/75">总用户</p>
+                    <p className="mt-1 text-base font-semibold">{tableRows.length}</p>
+                  </div>
+                  <div className="rounded-2xl border border-border/70 bg-card px-4 py-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground/75">在线人数</p>
+                    <p className="mt-1 text-base font-semibold theme-positive">{tableRows.filter((row) => row.status === "在线").length}</p>
+                  </div>
+                  <div className="rounded-2xl border border-border/70 bg-card px-4 py-3">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground/75">当前页</p>
+                    <p className="mt-1 text-base font-semibold">{safeCurrentPage} / {totalPages}</p>
+                  </div>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card p-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="relative w-full lg:max-w-sm">
+                  <Search className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    value={keyword}
+                    onChange={(event) => {
+                      setKeyword(event.target.value);
+                      setCurrentPage(1);
+                    }}
+                    placeholder="按姓名、邮箱、部门搜索..."
+                    className="theme-input pl-9"
+                  />
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="outline" className="rounded-full px-2.5">列表视图</Badge>
+                  <Button variant="outline" className="h-9 rounded-xl px-4" onClick={() => toast.info("筛选面板")}>筛选条件</Button>
+                  <Button className="h-9 rounded-xl px-4" onClick={() => toast.success("新建成员")}>新增成员</Button>
+                </div>
+              </div>
               <Table>
-                <TableCaption>用户列表</TableCaption>
-                <TableHeader><TableRow><TableHead>姓名</TableHead><TableHead>邮箱</TableHead><TableHead>角色</TableHead><TableHead>操作</TableHead></TableRow></TableHeader>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[220px]">成员</TableHead>
+                    <TableHead>所属部门</TableHead>
+                    <TableHead>角色</TableHead>
+                    <TableHead>状态</TableHead>
+                    <TableHead>最近更新</TableHead>
+                    <TableHead className="pr-6 text-right">操作</TableHead>
+                  </TableRow>
+                </TableHeader>
                 <TableBody>
-                  {[{ n: "张三", e: "zhang@example.com", r: "管理员" }, { n: "李四", e: "li@example.com", r: "用户" }, { n: "王五", e: "wang@example.com", r: "编辑" }].map((u, i) => (
-                    <TableRow key={i} className="cursor-pointer hover:bg-muted/50" onClick={() => toast.info(`选中: ${u.n}`)}>
-                      <TableCell className="font-medium">{u.n}</TableCell><TableCell>{u.e}</TableCell><TableCell><Badge variant="outline">{u.r}</Badge></TableCell>
-                      <TableCell><Button size="sm" variant="ghost"><Edit className="h-4 w-4" /></Button></TableCell>
+                  {pagedRows.length > 0 ? (
+                    pagedRows.map((u) => (
+                      <TableRow key={u.id} className="cursor-pointer" onClick={() => toast.info(`选中: ${u.n}`)}>
+                        <TableCell>
+                          <div className="flex items-center gap-3">
+                            <Avatar className="h-9 w-9 border border-border/70">
+                              <AvatarFallback>{u.n.slice(0, 1)}</AvatarFallback>
+                            </Avatar>
+                            <div className="space-y-0.5">
+                              <p className="font-medium text-foreground">{u.n}</p>
+                              <p className="text-xs text-muted-foreground">{u.e}</p>
+                            </div>
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">{u.team}</TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className={cn("rounded-full px-2.5", roleBadgeClassMap[u.r] ?? "border-border bg-muted/40 text-foreground")}>{u.r}</Badge>
+                        </TableCell>
+                        <TableCell>
+                          <span className={cn("inline-flex items-center gap-2 text-sm", u.status === "在线" ? "theme-positive" : "text-muted-foreground")}>
+                            <span className={cn("h-2 w-2 rounded-full", u.status === "在线" ? "bg-emerald-500" : "bg-slate-300")} />
+                            {u.status}
+                          </span>
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">{u.updatedAt}</TableCell>
+                        <TableCell className="pr-6 text-right">
+                          <div className="flex justify-end">
+                            <Button variant="ghost" className="h-9 rounded-xl px-3.5" onClick={(event) => { event.stopPropagation(); toast.info(`编辑 ${u.n}`); }}>
+                              <Edit className="mr-1 h-4 w-4" />
+                              编辑
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={6} className="py-10 text-center text-muted-foreground">
+                        没有匹配的成员，请调整搜索条件。
+                      </TableCell>
                     </TableRow>
-                  ))}
+                  )}
                 </TableBody>
+                <TableCaption>成员列表支持检索、行态反馈与分页浏览。</TableCaption>
               </Table>
+              <div className="flex flex-col gap-3 border-t border-border/70 pt-4 lg:flex-row lg:items-center lg:justify-between">
+                <p className="text-sm text-muted-foreground">
+                  显示第 <span className="font-medium text-foreground">{filteredRows.length === 0 ? 0 : pageStart + 1}</span>
+                  {" "}到{" "}
+                  <span className="font-medium text-foreground">{Math.min(pageStart + pageSize, filteredRows.length)}</span>
+                  {" "}条，共 <span className="font-medium text-foreground">{filteredRows.length}</span> 条
+                </p>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="icon-sm" className="rounded-xl" disabled={safeCurrentPage === 1} onClick={() => setCurrentPage(1)}>
+                    <ChevronsLeft className="h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" className="h-9 rounded-xl px-4" disabled={safeCurrentPage === 1} onClick={() => setCurrentPage((page) => Math.max(1, Math.min(totalPages, page - 1)))}>
+                    上一页
+                  </Button>
+                  {Array.from({ length: totalPages }).map((_, index) => {
+                    const page = index + 1;
+                    const active = page === safeCurrentPage;
+
+                    return (
+                      <Button
+                        key={page}
+                        variant={active ? "default" : "outline"}
+                        className="size-9 rounded-xl px-0"
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </Button>
+                    );
+                  })}
+                  <Button variant="outline" className="h-9 rounded-xl px-4" disabled={safeCurrentPage === totalPages} onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}>
+                    下一页
+                  </Button>
+                  <Button variant="outline" size="icon-sm" className="rounded-xl" disabled={safeCurrentPage === totalPages} onClick={() => setCurrentPage(totalPages)}>
+                    <ChevronsRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -826,12 +974,14 @@ function Nav() {
           <DropdownMenu>
             <DropdownMenuTrigger render={<Button variant="outline">打开菜单</Button>} />
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>我的账户</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => toast.info("个人资料")}><User className="mr-2 h-4 w-4" />个人资料</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => toast.info("设置")}><Settings className="mr-2 h-4 w-4" />设置</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => toast.success("已退出")} className="text-red-600"><X className="mr-2 h-4 w-4" />退出</DropdownMenuItem>
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>我的账户</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => toast.info("个人资料")}><User className="mr-2 h-4 w-4" />个人资料</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toast.info("设置")}><Settings className="mr-2 h-4 w-4" />设置</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => toast.success("已退出")} className="text-red-600"><X className="mr-2 h-4 w-4" />退出</DropdownMenuItem>
+              </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
         </CardContent>
@@ -905,7 +1055,7 @@ export default function Home() {
   return (
     <div className="theme-shell flex min-h-screen bg-background text-foreground">
       <aside className={cn(collapsed ? "w-18" : "w-64", "theme-sidebar flex flex-col border-r transition-all duration-300")}>
-        <div className="theme-sidebar-brand flex min-h-[76px] items-center justify-between border-b px-5 py-2.5">
+        <div className="theme-sidebar-brand flex min-h-[60px] items-center justify-between border-b px-4 py-2">
           {!collapsed && (
             <div className="space-y-0.5">
               <span className="block text-lg font-semibold tracking-tight text-sidebar-foreground">UI Demo</span>
@@ -940,31 +1090,34 @@ export default function Home() {
       </aside>
 
       <main className="flex min-w-0 flex-1 flex-col">
-        <header className="theme-header border-b border-border/70 px-6 py-3">
-          <div className="flex min-h-[52px] flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="hidden h-9 w-px bg-border/70 lg:block" />
-              <nav className="flex flex-wrap items-center gap-2">
-                {topModules.map((module) => {
-                  const active = module.id === "system";
+        <header className="theme-header border-b border-border/70">
+          <div className="flex min-h-[60px] items-center justify-between px-6">
+            <nav className="flex h-[60px] items-stretch gap-10">
+              {topModules.map((module) => {
+                const active = module.id === "system";
 
-                  return (
-                    <button
-                      key={module.id}
-                      type="button"
-                      className={cn(
-                        "theme-module-tab rounded-2xl px-5 py-2.5 text-sm font-semibold tracking-[0.01em] transition-all duration-200",
-                        active
-                          ? "theme-module-tab-active"
-                          : "text-muted-foreground hover:text-foreground"
-                      )}
-                    >
-                      {module.label}
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
+                return (
+                  <button
+                    key={module.id}
+                    type="button"
+                    className={cn(
+                      "group relative inline-flex items-center text-[15px] tracking-[0.01em] transition-colors duration-200",
+                      active
+                        ? "text-foreground font-semibold"
+                        : "text-muted-foreground/80 font-medium hover:text-foreground"
+                    )}
+                  >
+                    {module.label}
+                    <span className={cn(
+                      "absolute bottom-[-1px] left-0 right-0 h-[2px] rounded-full transition-all duration-200",
+                      active
+                        ? "bg-[var(--app-highlight,var(--color-primary))] opacity-100"
+                        : "bg-[var(--app-highlight,var(--color-primary))] opacity-0 scale-x-75 group-hover:opacity-40 group-hover:scale-x-100"
+                    )} />
+                  </button>
+                );
+              })}
+            </nav>
             <div className="flex flex-wrap items-center gap-3">
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -990,9 +1143,25 @@ export default function Home() {
               <Button variant="ghost" size="icon" onClick={() => toast.info("通知")}>
                 <Bell className="h-5 w-5" />
               </Button>
-              <Avatar className="h-8 w-8 cursor-pointer" onClick={() => toast.info("个人中心")}>
-                <AvatarFallback>AD</AvatarFallback>
-              </Avatar>
+              <DropdownMenu>
+                <DropdownMenuTrigger render={
+                  <button type="button" className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    <Avatar className="h-8 w-8 cursor-pointer">
+                      <AvatarFallback>AD</AvatarFallback>
+                    </Avatar>
+                  </button>
+                } />
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuGroup>
+                    <DropdownMenuLabel>我的账户</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => toast.info("个人资料")}><User className="mr-2 h-4 w-4" />个人资料</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => toast.info("设置")}><Settings className="mr-2 h-4 w-4" />设置</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => toast.success("已退出")} className="text-red-600"><X className="mr-2 h-4 w-4" />退出</DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </header>
